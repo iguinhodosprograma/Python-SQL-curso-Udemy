@@ -14,19 +14,19 @@ menu = """Please select one of the following options:
 Your selection: """
 welcome = "Welcome to the watchlist app!"
 
-
 print(welcome)
 database.create_tables()
+
 
 def prompt_add_movie():
     title = input("Movie title: ")
     release_date = input("Release date (dd-mm-YYYY): ")
     parsed_date = datetime.datetime.strptime(release_date, "%d-%m-%Y")
     timestamp = parsed_date.timestamp()
-    
+
     database.add_movie(title, timestamp)
-    
-    
+
+
 def prompt_add_user():
     username = input("Username:")
     database.add_user(username)
@@ -39,14 +39,14 @@ def print_movie_list(heading, movies):
         human_date = movie_date.strftime("%d %b %Y")
         print(f"{_id}: {title} (on {human_date})")
     print("-=-=-=-=-=-=-=- \n")
-    
+
 
 def prompt_watch_movie():
     username = input("Username: ")
     movie_id = input("Movie ID: ")
     database.watch_movie(username, movie_id)
-    
-    
+
+
 def prompt_show_watches_movies():
     username = input("Username: ")
     movies = database.get_watched_movies(username)
@@ -54,7 +54,7 @@ def prompt_show_watches_movies():
         print_movie_list("Watched", movies)
     else:
         print("That user has watches no movies yet!")
-        
+
 
 def prompt_search_movies():
     search_term = input("Enter the partial movie title: ")
